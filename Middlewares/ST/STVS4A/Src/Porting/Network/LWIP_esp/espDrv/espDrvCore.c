@@ -57,6 +57,7 @@
 #include "espDrvCore.h"
 #include "avs_wifi_private.h"
 #include "espDrvGlueAvs.h"
+#include "HarryPotter_config.h"
 
 #define AVS_SEND_CMD_TIMEOUT    (2000)  
 #define MAX_COMMAND_RETRY       5
@@ -619,7 +620,11 @@ WIFI_Result wifi_connect(uint32_t state,wifi_mode_e mode)
 
   char_t *pInfo = osMalloc(1000);
   WIFI_ASSERT(pInfo);
+#if HARDCODED_WIFI_SETTINGS
+  char_t *pCtx = WIFI_CREDENTIALS;
+#else
   char_t *pCtx= wifi_get_connection_info();
+#endif
   if(state && pInfo && pCtx)
   {
     /* format the message */

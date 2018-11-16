@@ -78,8 +78,8 @@ int main()
 {
 
   platform_Init();
-  osThreadDef(defaultTask, service_main_task, osPriorityNormal, 0, 1000);
-  osThreadCreate(osThread(defaultTask), NULL);
+                osThreadDef(defaultTask, service_main_task, osPriorityNormal, 0, 1000);
+                osThreadCreate(osThread(defaultTask), NULL);
   osKernelStart();
 
   /* Never reach this code */
