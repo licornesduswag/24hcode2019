@@ -61,11 +61,6 @@
 			<locationURI>PARENT-1-PROJECT_LOC/startup_stm32f769xx.s</locationURI>
 		</link>
 		<link>
-			<name>Application/Src/clean_lcd_swap_buffer.c</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Src/clean_lcd_swap_buffer.c</locationURI>
-		</link>
-		<link>
 			<name>Application/Src/ethernetif.c</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/Src/ethernetif.c</locationURI>
@@ -1426,31 +1421,6 @@
 			<locationURI>PARENT-6-PROJECT_LOC/Middlewares/ST/STVS4A/Examples/Src/Services/service_player.c</locationURI>
 		</link>
 		<link>
-			<name>Middlewares/ST/STVS4A/Examples/Services/Gui/service_gui_core.c</name>
-			<type>1</type>
-			<locationURI>PARENT-6-PROJECT_LOC/Middlewares/ST/STVS4A/Examples/Src/Services/service_gui_core.c</locationURI>
-		</link>
-		<link>
-			<name>Middlewares/ST/STVS4A/Examples/Services/Gui/service_gui_page_info.c</name>
-			<type>1</type>
-			<locationURI>PARENT-6-PROJECT_LOC/Middlewares/ST/STVS4A/Examples/Src/Services/service_gui_page_info.c</locationURI>
-		</link>
-		<link>
-			<name>Middlewares/ST/STVS4A/Examples/Services/Gui/service_gui_page_language.c</name>
-			<type>1</type>
-			<locationURI>PARENT-6-PROJECT_LOC/Middlewares/ST/STVS4A/Examples/Src/Services/service_gui_page_language.c</locationURI>
-		</link>
-		<link>
-			<name>Middlewares/ST/STVS4A/Examples/Services/Gui/service_gui_page_test.c</name>
-			<type>1</type>
-			<locationURI>PARENT-6-PROJECT_LOC/Middlewares/ST/STVS4A/Examples/Src/Services/service_gui_page_test.c</locationURI>
-		</link>
-		<link>
-			<name>Middlewares/ST/STVS4A/Examples/Services/Gui/service_gui_resource_800_480.c</name>
-			<type>1</type>
-			<locationURI>PARENT-6-PROJECT_LOC/Middlewares/ST/STVS4A/Examples/Src/Services/service_gui_resource_800_480.c</locationURI>
-		</link>
-		<link>
 			<name>Middlewares/ST/STVS4A/Src/porting/common/avs_compiler_support.c</name>
 			<type>1</type>
 			<locationURI>PARENT-6-PROJECT_LOC/Middlewares/ST/STVS4A/Src/Porting/Common/avs_compiler_support.c</locationURI>
@@ -1469,16 +1439,6 @@
 			<name>Middlewares/ST/STVS4A/Src/porting/stm32f7xx/avs_board_f7.h</name>
 			<type>1</type>
 			<locationURI>PARENT-6-PROJECT_LOC/Middlewares/ST/STVS4A/Src/Porting/stm32F7xx/avs_board_f7.h</locationURI>
-		</link>
-		<link>
-			<name>Middlewares/ST/STVS4A/Examples/Services/Gui/Wifi/service_gui_page_wifi.c</name>
-			<type>1</type>
-			<locationURI>PARENT-6-PROJECT_LOC/Middlewares/ST/STVS4A/Examples/Src/Services/service_gui_page_wifi.c</locationURI>
-		</link>
-		<link>
-			<name>Middlewares/ST/STVS4A/Examples/Services/Gui/Wifi/service_gui_page_wifi_flash_esp.c</name>
-			<type>1</type>
-			<locationURI>PARENT-6-PROJECT_LOC/Middlewares/ST/STVS4A/Examples/Src/Services/service_gui_page_wifi_flash_esp.c</locationURI>
 		</link>
 		<link>
 			<name>Middlewares/ST/STVS4A/Src/porting/Network/LwIP/avs_lwip_drv_network.c</name>
