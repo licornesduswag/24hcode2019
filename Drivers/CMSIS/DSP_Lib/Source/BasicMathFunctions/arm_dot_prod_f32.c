@@ -38,7 +38,12 @@
 * POSSIBILITY OF SUCH DAMAGE.  
 * ---------------------------------------------------------------------------- */
 
+#ifndef __FPU_PRESENT
+#define __FPU_PRESENT 1
+#endif
+
 #include "arm_math.h"
+
 
 /**    
  * @ingroup groupMath

@@ -57,7 +57,7 @@
 #include "espDrvCore.h"
 #include "avs_wifi_private.h"
 #include "espDrvGlueAvs.h"
-#include "HarryPotter_config.h"
+#include "Chapeau_config.h"
 
 #define AVS_SEND_CMD_TIMEOUT    (2000)  
 #define MAX_COMMAND_RETRY       5

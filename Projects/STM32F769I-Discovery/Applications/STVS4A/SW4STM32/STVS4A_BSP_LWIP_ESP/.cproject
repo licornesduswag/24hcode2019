@@ -30,7 +30,7 @@
 								</outputEntries>
 							</builder>
 							<tool id="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.1887215058" name="MCU GCC Compiler" superClass="fr.ac6.managedbuild.tool.gnu.cross.c.compiler">
-								<option defaultValue="gnu.c.optimization.level.none" id="fr.ac6.managedbuild.gnu.c.compiler.option.optimization.level.2033231935" name="Optimization Level" superClass="fr.ac6.managedbuild.gnu.c.compiler.option.optimization.level" useByScannerDiscovery="false" value="fr.ac6.managedbuild.gnu.c.optimization.level.size" valueType="enumerated"/>
+								<option defaultValue="gnu.c.optimization.level.none" id="fr.ac6.managedbuild.gnu.c.compiler.option.optimization.level.2033231935" name="Optimization Level" superClass="fr.ac6.managedbuild.gnu.c.compiler.option.optimization.level" useByScannerDiscovery="false" value="fr.ac6.managedbuild.gnu.c.optimization.level.debug" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.debugging.level.1108603708" name="Debug Level" superClass="gnu.c.compiler.option.debugging.level" useByScannerDiscovery="false" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.include.paths.675015012" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="../../../Inc"/>
@@ -66,9 +66,13 @@
 									<listOptionValue builtIn="false" value="../../../../../../../Middlewares/ST/STVS4A/Src/Porting/Network/LwIP_esp"/>
 									<listOptionValue builtIn="false" value="../../../../../../../Middlewares/ST/STVS4A/Src/Porting/stm32F7xx/Bsp"/>
 									<listOptionValue builtIn="false" value="../../../../../../../Middlewares/ST/STVS4A/Src/Porting/stm32F7xx"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Application/Src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Middlewares/ST/AI/AI/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Middlewares/ST/AI/AI/data}&quot;"/>
 								</option>
 								<option id="gnu.c.compiler.option.preprocessor.def.symbols.1850183358" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="CHECKSUM_BY_SOFTWARE"/>
+									<listOptionValue builtIn="false" value="ARM_MATH_CM7"/>
 									<listOptionValue builtIn="false" value="AVS_USE_QSPI_FLASHED"/>
 									<listOptionValue builtIn="false" value="AVS_USE_DEBUG"/>
 									<listOptionValue builtIn="false" value="STM32F7"/>
@@ -144,14 +148,16 @@
 							<tool id="fr.ac6.managedbuild.tool.gnu.cross.c.linker.822162595" name="MCU GCC Linker" superClass="fr.ac6.managedbuild.tool.gnu.cross.c.linker">
 								<option id="fr.ac6.managedbuild.tool.gnu.cross.c.linker.script.991133215" name="Linker Script (-T)" superClass="fr.ac6.managedbuild.tool.gnu.cross.c.linker.script" useByScannerDiscovery="false" value="../STM32F769NIHx_FLASH_SDRAM.ld" valueType="string"/>
 								<option id="gnu.c.link.option.libs.1345602973" name="Libraries (-l)" superClass="gnu.c.link.option.libs" useByScannerDiscovery="false" valueType="libs">
+									<listOptionValue builtIn="false" value=":network_runtime.a"/>
 									<listOptionValue builtIn="false" value=":http2_lwip_CM7_GCC_wc32_ot.a"/>
 									<listOptionValue builtIn="false" value=":lib_mp3decoder_cortex_m7_v2.1.0.a"/>
 								</option>
 								<option id="gnu.c.link.option.paths.131071423" name="Library search path (-L)" superClass="gnu.c.link.option.paths" useByScannerDiscovery="false" valueType="libPaths">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Middlewares/ST/AI/AI/lib}&quot;"/>
 									<listOptionValue builtIn="false" value="../../../../../../../Middlewares/Third_Party/HTTP2_LWIP/Lib"/>
 									<listOptionValue builtIn="false" value="../../../../../../../Middlewares/ST/STM32_Audio/Codecs/SpiritDSP_MP3_Dec/lib"/>
 								</option>
-								<option id="gnu.c.link.option.ldflags.395304648" name="Linker flags" superClass="gnu.c.link.option.ldflags" useByScannerDiscovery="false" value="-specs=nosys.specs -u printf_float" valueType="string"/>
+								<option id="gnu.c.link.option.ldflags.395304648" name="Linker flags" superClass="gnu.c.link.option.ldflags" useByScannerDiscovery="false" value="-specs=nosys.specs -u _printf_float" valueType="string"/>
 								<option id="gnu.c.link.option.other.2071146498" name="Other options (-Xlinker [option])" superClass="gnu.c.link.option.other" useByScannerDiscovery="false" valueType="stringList">
 									<listOptionValue builtIn="false" value="-no-wchar-size-warning"/>
 								</option>

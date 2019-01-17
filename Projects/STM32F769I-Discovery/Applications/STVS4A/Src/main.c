@@ -38,6 +38,7 @@
 #include "service.h"
 #include "platform_init.h"
 #include "cmsis_os.h"
+#include "Chapeau.h"
 
 
 
@@ -78,9 +79,20 @@ int main()
 {
 
   platform_Init();
-                osThreadDef(defaultTask, service_main_task, osPriorityNormal, 0, 1000);
-                osThreadCreate(osThread(defaultTask), NULL);
+  osThreadDef(defaultTask, service_main_task, osPriorityNormal, 0, 1000);
+  osThreadCreate(osThread(defaultTask), NULL);
+
+  osThreadDef(ChapeauTask, service_Chapeau_task, osPriorityNormal, 0, 20 * configMINIMAL_STACK_SIZE);
+  osThreadCreate(osThread(ChapeauTask), NULL);
+
+  osThreadDef(ChapeauLedTask, service_ChapeauLed_task, osPriorityNormal, 0, 20 * configMINIMAL_STACK_SIZE);
+  osThreadCreate(osThread(ChapeauLedTask), NULL);
+
+  osThreadDef(ChapeauUartTask, service_ChapeauUart_task, osPriorityNormal, 0, 20 * configMINIMAL_STACK_SIZE);
+  osThreadCreate(osThread(ChapeauUartTask), NULL);
+
   osKernelStart();
+
 
   /* Never reach this code */
   while (1);

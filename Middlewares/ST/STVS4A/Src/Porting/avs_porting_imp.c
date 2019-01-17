@@ -74,7 +74,8 @@ void avs_default_instance_solver(AVS_Instance_Factory *pFactory)
   avs_init_default_string(&pFactory->redirectUri, "http://stvs4a/grant_me");
   avs_init_default_string(&pFactory->urlNtpServer, "0.fr.pool.ntp.org");
   avs_init_default_string(&pFactory->cpuID, "STM32F(X)");
-  avs_init_default_string(&pFactory->urlEndPoint, "avs-alexa-na.amazon.com");
+  //avs_init_default_string(&pFactory->urlEndPoint, "avs-alexa-na.amazon.com");
+  avs_init_default_string(&pFactory->urlEndPoint, "avs-alexa-eu.amazon.com");
   avs_init_default_interger(&pFactory->memDTCMSize, BOARD_DTCM_SIZE);
   avs_init_default_interger(&pFactory->memPRAMSize, BOARD_PRAM_SIZE);
   avs_init_default_interger(&pFactory->memNCACHEDSize, BOARD_NCACHED_SIZE);

@@ -258,7 +258,15 @@ void avs_netif_link_callback_fn (struct netif *pnetif)
     }
     if(ipFound)
     {
-      WIFI_TRACE_VERBOSE("IpAdress = %s", pHandle->stringIpAdress);
+        //WIFI_TRACE_ERROR("IpAdress = %s", pHandle->stringIpAdress);
+        AVS_TRACE_INFO("The board IP address is : %s", pHandle->stringIpAdress);
+        AVS_TRACE_INFO("Readme extract, procedure to be done only once :\n\
+     * connect your PC's or smartphone's browser to http://%s.\n\
+     * When redirected to Amazon server, enter your Amazon credentials\n\
+     * then, the browser will try to reach an URL starting with http://stavs?code=...", pHandle->stringIpAdress);
+        AVS_TRACE_INFO("     * replace 'stavs' by the IP address (and keep the rest of the line unchanged)\n\
+     * The board will get a token , and store some info in flash so authentication procedure will not be needed after next reboot.");
+
       avs_core_message_send(pHandle, EVT_NETWORK_IP_OK, 0);
 
     }

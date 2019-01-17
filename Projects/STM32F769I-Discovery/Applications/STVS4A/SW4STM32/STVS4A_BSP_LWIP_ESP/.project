@@ -66,9 +66,19 @@
 			<locationURI>PARENT-2-PROJECT_LOC/Src/esp_uart_conf.c</locationURI>
 		</link>
 		<link>
+			<name>Application/Src/essai.c</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Src/essai.c</locationURI>
+		</link>
+		<link>
 			<name>Application/Src/main.c</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/Src/main.c</locationURI>
+		</link>
+		<link>
+			<name>Application/Src/Chapeau.c</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Src/Chapeau.c</locationURI>
 		</link>
 		<link>
 			<name>Application/Src/platform_adapt.c</name>
@@ -429,6 +439,11 @@
 			<name>Drivers/STM32F7xx_HAL_Driver/stm32f7xx_ll_usb.c</name>
 			<type>1</type>
 			<locationURI>PARENT-6-PROJECT_LOC/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_ll_usb.c</locationURI>
+		</link>
+		<link>
+			<name>Middlewares/ST/AI</name>
+			<type>2</type>
+			<locationURI>PARENT-6-PROJECT_LOC/Middlewares/ST/AI</locationURI>
 		</link>
 		<link>
 			<name>Application/Config/FreeRTOS/FreeRTOSConfig.h</name>
@@ -1239,6 +1254,11 @@
 			<name>Middlewares/Third_Party/LWIP/system/sys_arch.c</name>
 			<type>1</type>
 			<locationURI>PARENT-6-PROJECT_LOC/Middlewares/Third_Party/LWIP/system/OS/sys_arch.c</locationURI>
+		</link>
+		<link>
+			<name>Drivers/CMSIS/DSP_Lib/Source/BasicMathFunctions/arm_dot_prod_f32.c</name>
+			<type>1</type>
+			<locationURI>PARENT-6-PROJECT_LOC/Drivers/CMSIS/DSP_Lib/Source/BasicMathFunctions/arm_dot_prod_f32.c</locationURI>
 		</link>
 		<link>
 			<name>Middlewares/ST/STVS4A/Examples/Inc/service.h</name>
