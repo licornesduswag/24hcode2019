@@ -406,7 +406,7 @@ static void   GPIO_Config()
   */
 void HAL_LTDC_LineEventCallback(LTDC_HandleTypeDef *hltdc)
 {
-  portBASE_TYPE flag = (portBASE_TYPE)FALSE;
+  portBASE_TYPE flag = (portBASE_TYPE)0;
   if(xTaskGetSchedulerState() != taskSCHEDULER_NOT_STARTED )
   {
     xSemaphoreGiveFromISR(vSyncEvent, &flag);
@@ -544,6 +544,9 @@ void platform_Init()
 #endif
 }
 
+extern UART_HandleTypeDef UartHandleChapeau;
+extern ITStatus MsgReceived;
+
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 {
@@ -554,6 +557,12 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
       tUartWeakCB[a].cb(UartHandle);
     }
   }
+
+  if(UartHandle == &UartHandleChapeau){
+    /* Set transmission flag: transfer complete */
+    MsgReceived = SET;
+  }
+
 }
 
 

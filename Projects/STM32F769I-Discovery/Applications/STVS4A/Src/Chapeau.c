@@ -185,21 +185,163 @@ void printplot(char **bitmap28x28){
 
 extern const void *              pSoundWav;
 
-/** UART  ***************************************/
+
+/** UART ***************************************/
+
+ITStatus MsgReceived = RESET;
+
+/**
+  * @brief UART MSP Initialization
+  *        This function configures the hardware resources used in this example:
+  *           - Peripheral's clock enable
+  *           - Peripheral's GPIO Configuration
+  * @param huart: UART handle pointer
+  * @retval None
+  */
+void HAL_UART_MspInit(UART_HandleTypeDef *huart)
+{
+  GPIO_InitTypeDef  GPIO_InitStruct;
+
+  /*##-1- Enable peripherals and GPIO Clocks #################################*/
+  /* Enable GPIO TX/RX clock */
+  USARTChapeau_TX_GPIO_CLK_ENABLE();
+  USARTChapeau_RX_GPIO_CLK_ENABLE();
+
+
+  /* Enable USARTx clock */
+  USARTChapeau_CLK_ENABLE();
+
+  /*##-2- Configure peripheral GPIO ##########################################*/
+  /* UART TX GPIO pin configuration  */
+  GPIO_InitStruct.Pin       = USARTChapeau_TX_PIN;
+  GPIO_InitStruct.Mode      = GPIO_MODE_AF_PP;
+  GPIO_InitStruct.Pull      = GPIO_PULLUP;
+  GPIO_InitStruct.Speed     = GPIO_SPEED_HIGH;
+  GPIO_InitStruct.Alternate = USARTChapeau_TX_AF;
+
+  HAL_GPIO_Init(USARTChapeau_TX_GPIO_PORT, &GPIO_InitStruct);
+
+  /* UART RX GPIO pin configuration  */
+  GPIO_InitStruct.Pin = USARTChapeau_RX_PIN;
+  GPIO_InitStruct.Alternate = USARTChapeau_RX_AF;
+
+  HAL_GPIO_Init(USARTChapeau_RX_GPIO_PORT, &GPIO_InitStruct);
+
+  HAL_NVIC_SetPriority(USARTChapeau_IRQn, 0, 1);
+  HAL_NVIC_EnableIRQ(USARTChapeau_IRQn);
+}
+
+/**
+  * @brief UART MSP De-Initialization
+  *        This function frees the hardware resources used in this example:
+  *          - Disable the Peripheral's clock
+  *          - Revert GPIO configuration to their default state
+  * @param huart: UART handle pointer
+  * @retval None
+  */
+void HAL_UART_MspDeInit(UART_HandleTypeDef *huart)
+{
+  /*##-1- Reset peripherals ##################################################*/
+  USARTChapeau_FORCE_RESET();
+  USARTChapeau_RELEASE_RESET();
+
+  /*##-2- Disable peripherals and GPIO Clocks #################################*/
+  /* Configure USART6 Tx as alternate function  */
+  HAL_GPIO_DeInit(USARTChapeau_TX_GPIO_PORT, USARTChapeau_TX_PIN);
+  /* Configure USART6 Rx as alternate function  */
+  HAL_GPIO_DeInit(USARTChapeau_RX_GPIO_PORT, USARTChapeau_RX_PIN);
+
+  /*##-3- Disable the NVIC for UART ##########################################*/
+  HAL_NVIC_DisableIRQ(USARTChapeau_IRQn);
+}
+
+
+/* UART test :
+*      Need a link between D0 and D1
+*/
+void initUART_Prepare_Rx(void)
+{
+    UartHandleChapeau.Instance        = USARTChapeau;
+
+    UartHandleChapeau.Init.BaudRate   = 9600;
+    UartHandleChapeau.Init.WordLength = UART_WORDLENGTH_8B;
+    UartHandleChapeau.Init.StopBits   = UART_STOPBITS_1;
+    UartHandleChapeau.Init.Parity     = UART_PARITY_NONE;
+    UartHandleChapeau.Init.HwFlowCtl  = UART_HWCONTROL_NONE;
+    UartHandleChapeau.Init.Mode       = UART_MODE_TX_RX;
+    UartHandleChapeau.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+    if(HAL_UART_DeInit(&UartHandleChapeau) != HAL_OK)
+    {
+        AVS_TRACE_ERROR("HAL_UART_DeInit failed");
+    }
+    if(HAL_UART_Init(&UartHandleChapeau) != HAL_OK)
+    {
+        AVS_TRACE_ERROR("HAL_UART_Init failed");
+    }
+
+    AVS_TRACE_INFO("Wait for message on UART (D0 pin)");
+    memset(aRxBuffer, MSG_STUF_CHAR, RXBUFFERSIZE);
+    MsgReceived = RESET;
+    if(HAL_UART_Receive_IT(&UartHandleChapeau, (uint8_t *)aRxBuffer, RXBUFFERSIZE) != HAL_OK)
+    {
+        AVS_TRACE_ERROR("HAL_UART_Receive_IT failed");
+    }
+
+}
+
+void SendMsgOnUART(const uint8_t * msg)
+{
+    uint8_t size;
+
+    AVS_TRACE_INFO("Send message on UART (D1 pin): '%s'", msg);
+
+    memset(aTxBuffer, MSG_STUF_CHAR, TXBUFFERSIZE);
+    /* Copy msg into Tx buffer then add a special char at the end of msg */
+    size = (strlen(msg)>TXBUFFERSIZE - 1)? TXBUFFERSIZE - 1 : strlen(msg);
+    memcpy(aTxBuffer, msg, size);
+    aTxBuffer[size] = MSG_END_CHAR;
+    if(HAL_UART_Transmit(&UartHandleChapeau, aTxBuffer, TXBUFFERSIZE, 5000)!= HAL_OK)
+    {
+        AVS_TRACE_ERROR("HAL_UART_Transmit failed");
+    }
+}
+
 
 void service_ChapeauUart_task(void  const * argument)
 {
-    /* you can use this thread to handle UART communication */
-    
     AVS_TRACE_INFO("start Harry Potter Uart thread, are you talking to me ?");
 
-    /* init code */
-    
+    initUART_Prepare_Rx();
+
     while (1) {
-        /* loop. Don't forget to use osDelay to allow other tasks to be scedulled */
+
+        if(MsgReceived == SET){
+            AVS_TRACE_INFO("A message has been received on UART :");
+            /* Create a null-terminated valid string from the received buffer */
+            for(int i=0; i<RXBUFFERSIZE; i++)
+                if (aRxBuffer[i] == MSG_END_CHAR)
+                    aRxBuffer[i] = 0;
+            AVS_TRACE_INFO("     =>'%s'", aRxBuffer);
+
+            // Display it
+            BSP_LCD_SetTextColor(LCD_COLOR_GREEN);
+            BSP_LCD_FillRect(200, 0, 600, 80);
+            BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+            BSP_LCD_SetBackColor(LCD_COLOR_GREEN);
+            BSP_LCD_SetFont(&Font24);
+            BSP_LCD_DisplayStringAt(210, 40, (uint8_t *)aRxBuffer, RIGHT_MODE);
+
+            // Restore text color to black (for symbol drawing)
+            BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+
+            // Launch a new reception
+            initUART_Prepare_Rx();
+        }
+
         osDelay(10);
     }
 }
+
 /**********************************************/
 
 
@@ -393,6 +535,12 @@ void service_Chapeau_task(void  const * argument)
                 {
                     AVS_TRACE_INFO("Touch detected : 'Send' button\n");
 
+
+                       /* JUST FOR TEST !!!!!!!
+                                             TO MOVE IN YOUR CODE !!!!!!!!!!!!!!!
+                                        */
+                       SendMsgOnUART((uint8_t *)"collaporta");
+                       
                        /* Save only if point series is finishedn, users has released the touch
                                      * before pressing the Save area */
                        if (point_series_on_going == 1)
