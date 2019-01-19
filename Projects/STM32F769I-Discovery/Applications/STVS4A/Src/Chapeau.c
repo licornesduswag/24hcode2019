@@ -154,7 +154,7 @@ void rotate_bitmap(char **bitmap28x28, char *bitmap28x28_rotated)
 {
 	int Width_Rescaled=28, Height_Rescaled=28;
 
-	/* rotate image 90°, compensate LCD rotation => input for AI algo */
+	/* rotate image 90ï¿½, compensate LCD rotation => input for AI algo */
 	for (int x=0; x<Width_Rescaled; x++) {
 		for (int y=0; y<Height_Rescaled; y++) {
 			bitmap28x28_rotated[y*Width_Rescaled + x] = bitmap28x28[x][y];
@@ -214,7 +214,18 @@ void service_ChapeauLed_task(void  const * argument)
     /* init code */
     
     while (1) {
-        /* loop. Don't forget to use osDelay to allow other tasks to be scedulled */
+    	/* loop. Don't forget to use osDelay to allow other tasks to be scedulled */
+    	switch (AVS_Get_State(hInstance))
+    	{
+    	case AVS_STATE_START_CAPTURE:
+
+    		break;
+    	case AVS_STATE_STOP_CAPTURE:
+    		break;
+    	default:
+    		break;
+    	}
+
         osDelay(10);
     }
 }
