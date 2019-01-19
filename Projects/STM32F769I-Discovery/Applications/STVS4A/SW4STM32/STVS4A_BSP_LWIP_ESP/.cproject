@@ -62,8 +62,8 @@
 									<listOptionValue builtIn="false" value="../../../../../../../Middlewares/ST/STM32_USB_Device_Library/Class/AUDIO/Inc"/>
 									<listOptionValue builtIn="false" value="../../../../../../../Middlewares/Third_Party/LWIP/src/include"/>
 									<listOptionValue builtIn="false" value="../../../../../../../Middlewares/Third_Party/LWIP/system"/>
-									<listOptionValue builtIn="false" value="../../../../../../../Middlewares/ST/STVS4A/Src/Porting/Network/LwIP_esp/Config"/>
-									<listOptionValue builtIn="false" value="../../../../../../../Middlewares/ST/STVS4A/Src/Porting/Network/LwIP_esp"/>
+									<listOptionValue builtIn="false" value="../../../../../../../Middlewares/ST/STVS4A/Src/Porting/Network/LWIP_esp/Config"/>
+									<listOptionValue builtIn="false" value="../../../../../../../Middlewares/ST/STVS4A/Src/Porting/Network/LWIP_esp"/>
 									<listOptionValue builtIn="false" value="../../../../../../../Middlewares/ST/STVS4A/Src/Porting/stm32F7xx/Bsp"/>
 									<listOptionValue builtIn="false" value="../../../../../../../Middlewares/ST/STVS4A/Src/Porting/stm32F7xx"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Application/Src}&quot;"/>
@@ -124,8 +124,8 @@
 									<listOptionValue builtIn="false" value="../../../../../../../Middlewares/ST/STM32_USB_Device_Library/Class/AUDIO/Inc"/>
 									<listOptionValue builtIn="false" value="../../../../../../../Middlewares/Third_Party/LWIP/src/include"/>
 									<listOptionValue builtIn="false" value="../../../../../../../Middlewares/Third_Party/LWIP/system"/>
-									<listOptionValue builtIn="false" value="../../../../../../../Middlewares/ST/STVS4A/Src/Porting/Network/LwIP/Config"/>
-									<listOptionValue builtIn="false" value="../../../../../../../Middlewares/ST/STVS4A/Src/Porting/Network/LwIP"/>
+									<listOptionValue builtIn="false" value="../../../../../../../Middlewares/ST/STVS4A/Src/Porting/Network/LWIP/Config"/>
+									<listOptionValue builtIn="false" value="../../../../../../../Middlewares/ST/STVS4A/Src/Porting/Network/LWIP"/>
 									<listOptionValue builtIn="false" value="../../../../../../../Middlewares/ST/STVS4A/Src/Porting/stm32F7xx/Bsp"/>
 								</option>
 								<option id="gnu.cpp.compiler.option.preprocessor.def.1177878465" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def" useByScannerDiscovery="false" valueType="definedSymbols">
@@ -149,7 +149,7 @@
 								<option id="fr.ac6.managedbuild.tool.gnu.cross.c.linker.script.991133215" name="Linker Script (-T)" superClass="fr.ac6.managedbuild.tool.gnu.cross.c.linker.script" useByScannerDiscovery="false" value="../STM32F769NIHx_FLASH_SDRAM.ld" valueType="string"/>
 								<option id="gnu.c.link.option.libs.1345602973" name="Libraries (-l)" superClass="gnu.c.link.option.libs" useByScannerDiscovery="false" valueType="libs">
 									<listOptionValue builtIn="false" value=":network_runtime.a"/>
-									<listOptionValue builtIn="false" value=":http2_lwip_CM7_GCC_wc32_ot.a"/>
+									<listOptionValue builtIn="false" value=":http2_LWIP_CM7_GCC_wc32_ot.a"/>
 									<listOptionValue builtIn="false" value=":lib_mp3decoder_cortex_m7_v2.1.0.a"/>
 								</option>
 								<option id="gnu.c.link.option.paths.131071423" name="Library search path (-L)" superClass="gnu.c.link.option.paths" useByScannerDiscovery="false" valueType="libPaths">
@@ -169,7 +169,7 @@
 							<tool id="fr.ac6.managedbuild.tool.gnu.cross.cpp.linker.1367896671" name="MCU G++ Linker" superClass="fr.ac6.managedbuild.tool.gnu.cross.cpp.linker">
 								<option id="fr.ac6.managedbuild.tool.gnu.cross.cpp.linker.script.1791575777" name="Linker Script (-T)" superClass="fr.ac6.managedbuild.tool.gnu.cross.cpp.linker.script" value="../STM32F769NIHx_FLASH_SDRAM.ld" valueType="string"/>
 								<option id="gnu.cpp.link.option.libs.371754571" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
-									<listOptionValue builtIn="false" value=":http2_lwip_CM7F_GCC.a"/>
+									<listOptionValue builtIn="false" value=":http2_LWIP_CM7F_GCC.a"/>
 									<listOptionValue builtIn="false" value=":lib_mp3decoder_cortex_m7_v2.1.0.a"/>
 								</option>
 								<option id="gnu.cpp.link.option.paths.2060670888" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
